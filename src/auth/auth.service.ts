@@ -8,24 +8,19 @@ import * as bcrypt from 'bcrypt';
 export class AuthService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async genPassword(password: string): Promise<any> {
+  genPassword(password: string): string {
     const saltRounds = 10;
-    console.log(saltRounds);
-    return bcrypt.genSalt(saltRounds,async function (err, salt) {
-      console.log(salt);
-     return bcrypt.hash(password, salt,async function (err, hash) {
-        console.log(hash);
-        return hash;
-      });
-    });
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(password, salt);
+    return hash
   }
 
   async saveUser({ name, password }): Promise<any>  {
     
-    const hash = await (await this.genPassword(password));
-    console.log( hash);
-    
+    const hash = this.genPassword(password)
     const newUser = new this.userModel({ name, password: hash });
     await newUser.save();
   }
+
+  async getUser(){}
 }
