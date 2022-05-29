@@ -7,8 +7,6 @@ export type SessionDocument = Session & Document;
 export class Session{
     @Prop()
     sessionId:string
-    @Prop()
-    id:string
 }
 
 export const SessionSchema = SchemaFactory.createForClass(Session);

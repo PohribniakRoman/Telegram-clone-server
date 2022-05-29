@@ -16,11 +16,12 @@ export class AuthService {
   }
 
   async saveUser({ name, password }): Promise<any>  {
-    
     const hash = this.genPassword(password)
     const newUser = new this.userModel({ name, password: hash });
     await newUser.save();
+    return newUser._id.toString()
   }
-
-  async getUser(){}
+  async findUserByName(userName){
+    return await this.userModel.findOne({name:userName})
+  }
 }
