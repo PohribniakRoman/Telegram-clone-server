@@ -13,7 +13,7 @@ export class SessionController {
     if (isTokenExist) {
         res.status(201).send({authorized:true})
     }else{
-        res.status(201).send({authorized:false})
+        res.status(201).send({authorized:false}) 
     }
   }
 }
