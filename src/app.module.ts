@@ -3,10 +3,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppGateway } from './app.gateway';
 import { UserModule } from './auth/auth.module';
 import { LoginModule } from './login/login.module';
+import { SearchModule } from './search/search.module';
 import { SessionModule } from './session/session.module';
 
 @Module({
-  imports: [MongooseModule.forRoot("mongodb+srv://Admin:admin@cluster0.rb5jf.mongodb.net/?retryWrites=true&w=majority"),UserModule,LoginModule,SessionModule],
+  imports: [MongooseModule.forRoot("mongodb+srv://Admin:admin@cluster0.rb5jf.mongodb.net/?retryWrites=true&w=majority"),UserModule,LoginModule,SessionModule,SearchModule],
   providers:[AppGateway]
 })
 export class AppModule {}

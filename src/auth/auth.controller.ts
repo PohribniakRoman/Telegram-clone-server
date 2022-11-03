@@ -12,9 +12,9 @@ export class AuthController {
    const userExists = await this.authService.findUserByName(authDto.name)
    if (!userExists) {
        await this.authService.saveUser(authDto);
-       res.status(200).send({authorized:true})
+       res.status(200).send({authorized:true,msg:"User is registered!",status:200})
    }else{
-       res.status(404).send({authorized:false})
+       res.status(409).send({authorized:false,msg:"User alredy exist!",status:409})
    }
 }
 }
